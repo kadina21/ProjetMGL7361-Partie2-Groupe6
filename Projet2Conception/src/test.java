@@ -1,5 +1,5 @@
 
-public class EtatNonSoumis {
+/*public class EtatNonSoumis {
 
 	public test() {
 		// TODO Auto-generated constructor stub
@@ -9,4 +9,4 @@ public class EtatNonSoumis {
 		return new EtatRelecture();
 	}
 
-}
+}*/

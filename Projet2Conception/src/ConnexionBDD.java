@@ -7,7 +7,7 @@ public class ConnexionBDD {
 	private ConnexionBDD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\dinak\\eclipse-workspace\\Projet2Conception\\test.db");
 			System.out.println("DATABASE CONNECTED SUCCESSFULLY");
    
 		}catch(Exception ex) {
