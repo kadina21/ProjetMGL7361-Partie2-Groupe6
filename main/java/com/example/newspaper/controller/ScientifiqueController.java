@@ -1,13 +1,11 @@
 package com.example.newspaper.controller;
 
-import com.example.newspaper.objets.Scientifique;
+import com.example.newspaper.json.GestionAPI;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.newspaper.json.GestionAPI;
 
 import java.util.List;
 
