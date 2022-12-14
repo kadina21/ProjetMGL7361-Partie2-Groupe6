@@ -31,13 +31,13 @@ public class ArticleController {
         return gapi.encodeJSONSpecificArticle(id);
     }
 
-    @GetMapping("/articles/{auteur}")
+    @GetMapping("/articles_de_{auteur}")
     public List<JSONObject> selectArticlesAuteur(@PathVariable(value = "auteur")String auteur) {
         GestionAPI gapi = GestionAPI.getInstance();
         return gapi.encodeJSONArticlesByAuthor(auteur);
     }
 
-    @GetMapping("/articles/{categorie}")
+    @GetMapping("/articles/cat={categorie}")
     public List<JSONObject> selectArticlesCategorie(@PathVariable(value = "categorie")String categorie) {
         GestionAPI gapi = GestionAPI.getInstance();
         return gapi.encodeJSONArticlesByCategorie(categorie);

@@ -6,7 +6,7 @@ import com.example.newspaper.objets.Scientifique;
 
 import java.util.Scanner;
 
-public class Evaluateur extends Scientifique {
+public class Evaluateur {//extends Scientifique {
 
     public void evaluer(Article A){
         Commentaire com = new Commentaire();
@@ -24,7 +24,7 @@ public class Evaluateur extends Scientifique {
             //com.setType(Commentaire.TypeComment.vide);
         }
     }
-    public Evaluateur(String nom, String prenom, String domaine, String emploi) {
+    //public Evaluateur(String nom, String prenom, String domaine, String emploi) {
         //super(nom, prenom, domaine, emploi);
-    }
+    //}
 }

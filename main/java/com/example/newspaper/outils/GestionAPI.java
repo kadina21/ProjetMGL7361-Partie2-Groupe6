@@ -56,7 +56,7 @@ public class GestionAPI implements APIUser, APIArticle{
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement("INSERT INTO utilisateurs(typeUser,name,firstName,email,username,password,field,job) VALUES (?,?,?,?,?,?,?,?);");
-			ps.setString(1,jo.get("typeUser").toString());
+			ps.setString(1,jo.get("type_user").toString());
 			ps.setString(2,jo.get("name").toString());
 			ps.setString(3,jo.get("first_name").toString());
 			ps.setString(4,jo.get("email").toString());
@@ -290,7 +290,7 @@ public class GestionAPI implements APIUser, APIArticle{
 			ps = connection.prepareStatement("SELECT * FROM articles WHERE categorie='"+categorie+"';");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				listJSON.add(encodeJSONSpecificUser(rs.getString("id")));
+				listJSON.add(encodeJSONSpecificArticle(rs.getString("id")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

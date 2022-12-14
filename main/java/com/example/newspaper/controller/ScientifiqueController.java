@@ -25,7 +25,7 @@ public class ScientifiqueController {
         return gapi.encodeJSONTypeUser(type);
     }
 
-    @GetMapping("/users_id={id_user}")
+    @GetMapping("/user/{id_user}")
     public JSONObject selectIDUser(@PathVariable(value = "id_user")String id){
         GestionAPI gapi=GestionAPI.getInstance();
         return gapi.encodeJSONSpecificUser(id);
