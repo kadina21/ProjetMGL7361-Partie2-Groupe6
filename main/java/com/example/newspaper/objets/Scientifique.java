@@ -92,7 +92,7 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 	}
 
 	//@Override
-	public static void authentification(String json) {
+	public static String authentification(String json) {
 		Connection connection= ConnexionBDD.getInstance().connection;
 		Object o = JSONValue.parse(json);
 		JSONObject jo = (JSONObject) o;
@@ -114,6 +114,8 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 				}*/
 			}else{
 				System.out.println("Vous êtes connecté !");
+
+				return "{\"type_user\":\""+jo.get("type_user")+"\",\"id\":\""+rs.getString("id")+"\"}";
 				//Scientifique s=new Scientifique(json);
 				//s.setLoggedIn(true);
 
@@ -156,7 +158,7 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 				creerCompte();
 			}
 		}*/
-
+		return null;
 	}
 
 	public String toString(){
@@ -189,7 +191,7 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 		}
 		String json2="{\"password\":\"supermdp3\",\"field\":\"Physique\",\"type_user\":\"auteur\",\"name\":\"Allo\",\"job\":\"Chercheur\",\"first_name\":\"Hello\",\"email\":\"hello@gmail.com\",\"username\":\"alloteur\"}";
 
-		authentification(json);
-		authentification(json2);
+		System.out.println(authentification(json));
+		System.out.println(authentification(json2));
 	}
 }
