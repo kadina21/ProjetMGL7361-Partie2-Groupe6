@@ -1,5 +1,7 @@
 package com.example.newspaper.objets;
 
+import com.example.newspaper.outils.ConnexionBDD;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +20,7 @@ public class Main {
 		System.out.println(l.getNom()+l.getPrenom()+l.getUsername()+l.getPassword());*/
 		
 		try {
-			Connection connection=ConnexionBDD.getInstance().connection;
+			Connection connection= ConnexionBDD.getInstance().connection;
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM utilisateurs;");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {

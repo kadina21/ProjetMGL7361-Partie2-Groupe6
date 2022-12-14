@@ -1,4 +1,4 @@
-package com.example.newspaper.json;
+package com.example.newspaper.outils;
 
 import java.util.Comparator;
 

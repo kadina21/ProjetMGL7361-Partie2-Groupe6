@@ -1,7 +1,8 @@
 package com.example.newspaper.objets;
 
+import com.example.newspaper.outils.ConnexionBDD;
+
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -64,7 +65,7 @@ public class Scientifique extends Lecteur implements UserAuthentication {
 
 	public void creerCompte() {
 		//user va entrer ses identifiants et on les rajoute à la bdd
-		Connection connection=ConnexionBDD.getInstance().connection;
+		Connection connection= ConnexionBDD.getInstance().connection;
 		Scanner sc=new Scanner(System.in, "UTF-8");
 
 		System.out.println("Veuillez saisir votre nom.");

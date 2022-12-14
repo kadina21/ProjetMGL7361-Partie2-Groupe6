@@ -1,4 +1,4 @@
-package com.example.newspaper.objets;
+package com.example.newspaper.outils;
 
 import java.sql.*;
 
@@ -9,7 +9,7 @@ public class ConnexionBDD {
 	private ConnexionBDD() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\dinak\\eclipse-workspace\\Projet2Conception\\test.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:bdd.db");
 			System.out.println("DATABASE CONNECTED SUCCESSFULLY");
    
 		}catch(Exception ex) {
