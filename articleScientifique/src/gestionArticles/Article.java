@@ -8,7 +8,7 @@ public class Article {
 	private String id;
 	private String titre;
 	private EtatArticle etat;
-	private Comite comite;
+	//private Comite comite;
 	private int points; 
 	
 	
@@ -21,15 +21,6 @@ public class Article {
 
 
 
-	public Comite getComite() {
-		return comite;
-	}
-
-
-
-	public void setComite(Comite comite) {
-		this.comite = comite;
-	}
 
 
 
