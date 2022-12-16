@@ -6,14 +6,58 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.sql.*;
-import java.util.Scanner;
 
-public class Scientifique extends Lecteur{// implements UserAuthentication {
+public class Scientifique {// implements UserAuthentication {
 	private int id;
+	protected String nom;
+	protected String prenom;
+	protected String email;
+	protected String username;
+	protected String password;
 	private String typeUser;
 	private String domaine;
 	private String emploi;
 	private boolean loggedIn;
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	//Constructeur qui crée le compte de l'utilisateur
 	public Scientifique(String json){
@@ -34,11 +78,11 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 				password=rs.getString("password");
 				domaine=rs.getString("field");
 				emploi=rs.getString("job");
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Admin.getInstance().addUser(this);
 	}
 	
 	public String getDomaine() {
@@ -55,6 +99,14 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 
 	public void setEmploi(String emploi) {
 		this.emploi = emploi;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
 	}
 
 	public void modifierProfil() {
@@ -83,14 +135,6 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 		//et requête SQL
 	}
 
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
-
 	//@Override
 	public static String authentification(String json) {
 		Connection connection= ConnexionBDD.getInstance().connection;
@@ -102,7 +146,7 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 			ResultSet rs = ps.executeQuery();
 			if(!rs.next()){
 				//cas du mot de passe oublié ?
-				System.out.println("Nom d'utilisateur ou mot de passe incorrect.\nRéessayer (1), mot de passe oublié (2) ou créer un compte (3) ?");
+				System.out.println("Nom d'utilisateur ou mot de passe incorrect.");
 				/*int choix = sc.nextInt(); //A CHANGER AVEC ENTREE
 				if(choix==1) {
 					authentification(json);
@@ -114,50 +158,17 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 				}*/
 			}else{
 				System.out.println("Vous êtes connecté !");
-
+				for(Scientifique s : Admin.getInstance().getListeUtilisateurs()){
+					if(s.getUsername()==rs.getString("username") && s.getPassword()==rs.getString("password")){
+						s.setLoggedIn(true);
+						break;
+					}
+				}
 				return "{\"type_user\":\""+jo.get("type_user")+"\",\"id\":\""+rs.getString("id")+"\"}";
-				//Scientifique s=new Scientifique(json);
-				//s.setLoggedIn(true);
-
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
-		//requête SQL pour trouver username et password dans bdd
-		//si identifiants introuvables une fois, message d'erreur et choix donné de créer un compte
-		/*Connection connection=ConnexionBDD.getInstance().connection;
-		Scanner sc=new Scanner(System.in, "UTF-8");
-		System.out.println("Insérez votre nom d'utilisateur");
-		String username = sc.nextLine();
-		System.out.println("Insérez votre mot de passe");
-		String password = sc.nextLine();
-
-		//Comparer avec bdd aussi ? boolean trouve que si on utilise la bdd, sinon juste la condition ligne 129
-		boolean trouve=false; //à modifier quand requête sera faite
-		if (this.username==null || this.password==null) {
-			trouve=false;
-		}else if (username.compareTo(this.username)==0 && password.compareTo(this.password)==0) {
-			trouve = true;
-		}
-
-		if(trouve) {
-			setLoggedIn(true);
-			System.out.println("Vous êtes connecté !");
-			//quelque chose d'autre ?
-		}else {
-			//cas du mot de passe oublié ?
-			System.out.println("Nom d'utilisateur ou mot de passe incorrect.\nRéessayer (1), mot de passe oublié (2) ou créer un compte (3) ?");
-			int choix = sc.nextInt(); //A CHANGER AVEC ENTREE
-			if(choix==1) {
-				authentification();
-			}else if (choix==2) {
-				//mail avec mot de passe temporaire
-				//qui sera généré auto et mis dans bdd ici ?
-			}else{
-				creerCompte();
-			}
-		}*/
 		return null;
 	}
 
@@ -193,5 +204,14 @@ public class Scientifique extends Lecteur{// implements UserAuthentication {
 
 		System.out.println(authentification(json));
 		System.out.println(authentification(json2));
+		for(Scientifique s2 : Admin.getInstance().getListeUtilisateurs()){
+			System.out.println(s2.getUsername());
+		}
+	}
+
+	public void rechercherArticle() {
+		//se mettre dans la bd d'article
+		//demander quel type de recherche ou bien deviner ?
+		//requête SQL pour retrouver l'article
 	}
 }
