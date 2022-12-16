@@ -9,14 +9,15 @@ public class Article {
 	private String titre;
 	private EtatArticle etat;
 	//private Comite comite;
-	private int points; 
+	private int points;
+
 	
 	
 	
 	public Article() {
 		
-		etat = new EtatNonSoumis(this);
-		points=0;
+		this.etat = new EtatNonSoumis(this);
+		this.points=0;
 	}
 
 
