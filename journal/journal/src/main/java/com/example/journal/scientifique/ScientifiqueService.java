@@ -1,9 +1,10 @@
 package com.example.journal.scientifique;
 
+import com.example.journal.article.Article;
+import com.example.journal.article.ArticleRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,10 +13,12 @@ import java.util.Optional;
 @Service
 public class ScientifiqueService {
     private final ScientifiqueRepository sciRepo;
+    private final ArticleRepository artRepo;
 
     @Autowired
-    public ScientifiqueService(ScientifiqueRepository scientifiqueRepository){
+    public ScientifiqueService(ScientifiqueRepository scientifiqueRepository, ArticleRepository artRepo){
         sciRepo=scientifiqueRepository;
+        this.artRepo = artRepo;
     }
 
     public List<Scientifique> getScientifique(){
@@ -100,6 +103,26 @@ public class ScientifiqueService {
     public void deconnexion(Long id){
         Scientifique s = sciRepo.findById(id).orElseThrow(()->new IllegalStateException("Scientifique "+id+" n'existe pas"));
         s.setLoggedIn(false);
+    }
+
+    public String getEtatArticle(Long id_sci,Long id_art) {
+        Optional<Scientifique> os = sciRepo.findById(id_sci);
+        Optional<Article> oa = artRepo.findById(id_art);
+        if(os.isPresent() && oa.isPresent()){
+            List<Article> la=os.get().getArticles();
+            Article a = oa.get();
+            Scientifique s=os.get();
+            if(s.isLoggedIn()){
+                if(la.contains(a)){
+                    return a.getEtat();
+                }
+            }else{
+                return "Veuillez vous connecter";
+            }
+        }else{
+            throw new IllegalStateException("Scientifique ou article introuvable");
+        }
+        return null;
     }
 }
 

@@ -1,8 +1,8 @@
 package com.example.journal.article;
 
-import com.example.journal.evaluateur.Comite;
+import com.example.journal.comite.Comite;
+import com.example.journal.numero.Numero;
 import com.example.journal.scientifique.Scientifique;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -10,6 +10,7 @@ import org.hibernate.annotations.Where;
 
 import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 @Table
 public class Article {
@@ -32,6 +33,9 @@ public class Article {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "article")
     @JsonManagedReference
     private Comite comite;
+    @ManyToOne
+    @JsonManagedReference
+    private Numero numero;
     private int points;
 
 

@@ -1,9 +1,8 @@
 package com.example.journal.scientifique;
 
 import com.example.journal.article.Article;
-import com.example.journal.evaluateur.Comite;
+import com.example.journal.comite.Comite;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 

@@ -1,8 +1,7 @@
 package com.example.journal.scientifique;
 
 import com.example.journal.article.Article;
-import com.example.journal.evaluateur.Comite;
-import com.example.journal.evaluateur.Evaluateur;
+import com.example.journal.comite.Comite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public class Admin {
     private static String username="admin";
     private static String password="123456";
     private List<Scientifique> listeUtilisateurs=new ArrayList<>();
-    private List<Evaluateur> listeEvaluateur=new ArrayList<>();
+    private List<Scientifique> listeEvaluateur=new ArrayList<>();
     private List<Comite> listeComite=new ArrayList<>();
     private List<Article> listeArticle=new ArrayList<>();
 
@@ -31,7 +30,7 @@ public class Admin {
         listeUtilisateurs.add(s);
     }
 
-    public void addEval(Evaluateur e){
+    public void addEval(Scientifique e){
         listeEvaluateur.add(e);
     }
 
@@ -47,7 +46,7 @@ public class Admin {
         return listeUtilisateurs;
     }
 
-    public List<Evaluateur> getListeEvaluateur() {
+    public List<Scientifique> getListeEvaluateur() {
         return listeEvaluateur;
     }
 

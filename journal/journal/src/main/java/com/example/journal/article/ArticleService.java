@@ -1,7 +1,7 @@
 package com.example.journal.article;
 
-import com.example.journal.evaluateur.Comite;
-import com.example.journal.evaluateur.ComiteRepository;
+import com.example.journal.comite.Comite;
+import com.example.journal.comite.ComiteRepository;
 import com.example.journal.scientifique.Scientifique;
 import com.example.journal.scientifique.ScientifiqueRepository;
 import jakarta.transaction.Transactional;
@@ -82,6 +82,16 @@ public class ArticleService {
         if(auteurs!=null && auteurs.size()>0 && !Objects.equals(a.getAuteurs(),auteurs)){
             a.setAuteurs(auteurs);
         }
+    }
+
+    @Transactional
+    public Article updatePointsArticle(Long id, int points) {
+        Article a = artRepo.findById(id).orElseThrow(()->new IllegalStateException("Article "+id+" n'existe pas"));
+        if(points>=4){
+            a.setPoints(points);
+            a.setEtat(new EtatCameraReady());
+        }
+        return a;
     }
 
 }

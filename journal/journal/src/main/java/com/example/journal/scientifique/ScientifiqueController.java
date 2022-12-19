@@ -1,5 +1,6 @@
 package com.example.journal.scientifique;
 
+import com.example.journal.article.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +24,21 @@ public class ScientifiqueController {
     }
 
     @CrossOrigin
-    //@RequestMapping(path = "scientifique")
     @GetMapping(path="scientifique/{id_scientifique}")
     public Optional<Scientifique> getScientifiqueById(@PathVariable(value="id_scientifique")Long id){
         return scientifiqueService.getScientifiqueById(id);
     }
 
     @CrossOrigin
-    //@RequestMapping(value = "scientifique/type=",method = RequestMethod.GET)
     @GetMapping(path="scientifique_type/{type_user}")
     public List<Scientifique> getScientifiqueParType(@PathVariable(value="type_user")String type) {
         return scientifiqueService.getScientifiqueParType(type);
+    }
+
+    @CrossOrigin
+    @GetMapping(path="scientifique_id/{id_sci}/etat_article/{id_art}")
+    public String getEtatArticle(@PathVariable(value = "id_sci")Long id_sci,@PathVariable(value = "id_art")Long id_art) {
+        return scientifiqueService.getEtatArticle(id_sci,id_art);
     }
 
     @CrossOrigin

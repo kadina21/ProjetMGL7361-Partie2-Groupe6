@@ -18,4 +18,5 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     List<Article> findArticleByEtat(String etat);
     @Query("SELECT a from Article a where a.articles_scientifiques=?1")
     Optional<Article> findArticleByAuteurs(List<Scientifique> auteurs);
+
 }
