@@ -2,6 +2,7 @@ package com.example.journal.scientifique;
 
 import com.example.journal.article.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,19 +43,19 @@ public class ScientifiqueController {
     }
 
     @CrossOrigin
-    @PostMapping("scientifique")
+    @PostMapping("scientifique_add")
     public void registerNewScientifique(@RequestBody Scientifique s){
         scientifiqueService.addNewStudent(s);
     }
 
     @CrossOrigin
-    @DeleteMapping(path="{id_scientifique}")
+    @DeleteMapping(path="scientifique_del/{id_scientifique}")
     public void deleteScientifique(@PathVariable("id_scientifique")Long id){
         scientifiqueService.deleteScientifique(id);
     }
 
     @CrossOrigin
-    @PutMapping(path="{id_scientifique}")
+    @PutMapping(path="scientifique_maj/{id_scientifique}")
     public void updateScienfitique(@PathVariable("id_scientifique")Long id,
                                    @RequestParam(required=false)String domaine,
                                    @RequestParam(required = false)String emploi,
@@ -64,10 +65,9 @@ public class ScientifiqueController {
     }
 
     @CrossOrigin
-    @RequestMapping(path="login")
-    public Optional<Scientifique> authentification(@RequestParam String username,
-                                @RequestParam String password){
-        return scientifiqueService.authentification(username,password);
+    @PostMapping(path="login")
+    public Optional<Scientifique> authentification(@RequestBody AuthentificationPOJO apojo){
+        return scientifiqueService.authentification(apojo);
     }
 
     @CrossOrigin

@@ -49,13 +49,13 @@ public class ArticleController {
     }
 
     @CrossOrigin
-    @DeleteMapping(path="{id_article}")
+    @DeleteMapping(path="article_del/{id_article}")
     public void deleteArticle(@PathVariable("id_article")Long id){
         articleService.deleteArticle(id);
     }
 
     @CrossOrigin
-    @PutMapping(path="{id_article}")
+    @PutMapping(path="article_maj/{id_article}")
     public void updateArticle(@PathVariable("id_article")Long id,
                                    @RequestParam(required=false)String titre,
                                    @RequestParam(required = false)String categorie,

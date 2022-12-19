@@ -82,24 +82,30 @@ public class ScientifiqueService {
         }
     }
 
-
-    public Optional<Scientifique> authentification(String username, String password) {
+    @Transactional
+    public Optional<Scientifique> authentification(AuthentificationPOJO apojo) {
         Optional<Scientifique> loggedin=sciRepo.findScientifiqueByLoggedIn(true);
         if(loggedin.isPresent()){
             throw new IllegalStateException("Un utilisateur est déjà connecté");
         }
-        Optional<Scientifique> os= sciRepo.findScientifiqueByUsernamePassword(username,password);
-        if(os.isPresent()){
-            Scientifique s=os.get();
-            s.setLoggedIn(true);
-            os=sciRepo.findScientifiqueByUsernamePassword(username,password);
-            return os;
+        if(apojo.getUsername()!=null && apojo.getPassword()!=null){
+            Optional<Scientifique> os= sciRepo.findScientifiqueByUsernamePassword(apojo.getUsername(),apojo.getPassword());
+            if(os.isPresent()){
+                Scientifique s=os.get();
+                s.setLoggedIn(true);
+                os=sciRepo.findScientifiqueByUsernamePassword(apojo.getUsername(),apojo.getPassword());
+                return os;
+            }else{
+                throw new IllegalStateException("Identifiants incorrects");
+            }
         }else{
-            throw new IllegalStateException("Identifiants incorrects");
+            throw new IllegalStateException("Identifiants nuls");
         }
+
     }
 
 
+    @Transactional
     public void deconnexion(Long id){
         Scientifique s = sciRepo.findById(id).orElseThrow(()->new IllegalStateException("Scientifique "+id+" n'existe pas"));
         s.setLoggedIn(false);

@@ -27,10 +27,10 @@ public class Scientifique {
     protected String emploi;
     protected boolean loggedIn;
     @ManyToOne
-    @JsonManagedReference
+    //@JsonManagedReference
     protected Comite comite;
     @ManyToMany(mappedBy = "articles_scientifiques",fetch = FetchType.LAZY)
-    @JsonBackReference
+    //@JsonBackReference
     protected List<Article> articles;
 
     public Scientifique(String nom, String prenom, String email, String username, String password, String typeUser, String domaine, String emploi,List<Article> articles) {
