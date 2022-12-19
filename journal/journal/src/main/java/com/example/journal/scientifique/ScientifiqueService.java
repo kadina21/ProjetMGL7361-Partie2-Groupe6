@@ -17,6 +17,7 @@ public class ScientifiqueService {
     public ScientifiqueService(ScientifiqueRepository scientifiqueRepository){
         sciRepo=scientifiqueRepository;
     }
+
     public List<Scientifique> getScientifique(){
         return sciRepo.findAll();
     }
@@ -25,7 +26,7 @@ public class ScientifiqueService {
         return sciRepo.findById(id);
     }
 
-    public Optional<Scientifique> getScientifiqueParType(String type) {
+    public List<Scientifique> getScientifiqueParType(String type) {
         return sciRepo.findScientifiqueByType(type);
     }
 

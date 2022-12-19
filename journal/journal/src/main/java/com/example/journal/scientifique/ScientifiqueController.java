@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/scientifique")
+@RequestMapping("/api")
 public class ScientifiqueController {
     private final ScientifiqueService scientifiqueService;
 
@@ -17,31 +17,27 @@ public class ScientifiqueController {
     }
 
     @CrossOrigin
-    @GetMapping
+    @GetMapping(path = "scientifiques")
     public List<Scientifique> getScientifique(){
         return scientifiqueService.getScientifique();
     }
 
     @CrossOrigin
-    @GetMapping(path="{id_scientifique}")
+    //@RequestMapping(path = "scientifique")
+    @GetMapping(path="scientifique/{id_scientifique}")
     public Optional<Scientifique> getScientifiqueById(@PathVariable(value="id_scientifique")Long id){
         return scientifiqueService.getScientifiqueById(id);
     }
 
     @CrossOrigin
-    @GetMapping(path="?type{type_user}")
-    public Optional<Scientifique> getScientifiqueParType(@PathVariable(value="type_user")String type) {
+    //@RequestMapping(value = "scientifique/type=",method = RequestMethod.GET)
+    @GetMapping(path="scientifique_type/{type_user}")
+    public List<Scientifique> getScientifiqueParType(@PathVariable(value="type_user")String type) {
         return scientifiqueService.getScientifiqueParType(type);
     }
 
-    /*@CrossOrigin
-    @GetMapping(path="?type{type_user}")
-    public Optional<Scientifique> getScientifiqueAvecAuthentification(@PathVariable(value="type_user")String type) {
-        return scientifiqueService.getScientifiqueParType(type);
-    }*/
-
     @CrossOrigin
-    @PostMapping
+    @PostMapping("scientifique")
     public void registerNewScientifique(@RequestBody Scientifique s){
         scientifiqueService.addNewStudent(s);
     }

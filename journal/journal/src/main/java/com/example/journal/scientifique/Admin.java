@@ -1,5 +1,9 @@
 package com.example.journal.scientifique;
 
+import com.example.journal.article.Article;
+import com.example.journal.evaluateur.Comite;
+import com.example.journal.evaluateur.Evaluateur;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,12 +68,12 @@ public class Admin {
         return null;
     }
 
-    public Article getArticleByID(int id){
+    /*public Article getArticleByID(int id){
         for(Article a : listeArticle){
             if (a.getId()==id){
                 return a;
             }
         }
         return null;
-    }
+    }*/
 }

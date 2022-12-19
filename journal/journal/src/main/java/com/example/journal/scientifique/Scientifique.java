@@ -1,20 +1,22 @@
 package com.example.journal.scientifique;
 
+import com.example.journal.article.Article;
+import com.example.journal.evaluateur.Comite;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table
 public class Scientifique {
     @Id
-    @SequenceGenerator(
-            name="scientifique_sequence",
-            sequenceName="scientifique_sequence",
-            allocationSize = 1
-    )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "scientifique_sequence"
+            strategy = GenerationType.IDENTITY
     )
+    @Column(name = "scientifiqueId")
     private Long id;
     protected String nom;
     protected String prenom;
@@ -25,8 +27,14 @@ public class Scientifique {
     protected String domaine;
     protected String emploi;
     protected boolean loggedIn;
+    @ManyToOne
+    @JsonManagedReference
+    protected Comite comite;
+    @ManyToMany(mappedBy = "articles_scientifiques",fetch = FetchType.LAZY)
+    @JsonBackReference
+    protected List<Article> articles;
 
-    public Scientifique(String nom, String prenom, String email, String username, String password, String typeUser, String domaine, String emploi) {
+    public Scientifique(String nom, String prenom, String email, String username, String password, String typeUser, String domaine, String emploi,List<Article> articles) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -35,6 +43,7 @@ public class Scientifique {
         this.typeUser = typeUser;
         this.domaine = domaine;
         this.emploi = emploi;
+        this.articles=articles;
     }
 
     public Scientifique() {
@@ -119,6 +128,22 @@ public class Scientifique {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public Comite getComite() {
+        return comite;
+    }
+
+    public void setComite(Comite comite) {
+        this.comite = comite;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     @Override
