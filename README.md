@@ -18,8 +18,7 @@ ng serve
 ```
 
 ## Guide utilisateur
-Veuillez trouver ci-dessous un guide concernant l'utilisation de notre application.
-[insérer doc]
+Veuillez trouver dans le dépôt un guide concernant l'utilisation de notre application.
 
 ## Équipe
 Thanina Ait Khelifa  
