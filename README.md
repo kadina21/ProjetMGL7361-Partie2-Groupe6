@@ -10,6 +10,8 @@ Notre projet a été réalisé en Java pour le back-end à l'aide du framework S
 
 ## Configuration et lancement
 Pour lancer notre code, notamment le back-end, toutes les dépendances Maven sont dans le fichier pom.xml. Cependant, votre ordinateur doit avoir PostgreSQL afin de pouvoir utiliser la base de données.
+Notre code de front-end étant trop lourd et manquant de temps, notre code est dans une archive rar que vous pouvez récupérer dans le lien suivant : https://drive.google.com/file/d/1n-CK700OVWkHl9haBqTcJlcOGWyihaaM/view?usp=sharing
+Notre dépôt GitHub ne comprend que le code source du front-end et non les modules Node.
 Avant de lancer le front-end, il faut exécuter les commandes suivantes :  
 ```bash
 npm i @angular/cli
