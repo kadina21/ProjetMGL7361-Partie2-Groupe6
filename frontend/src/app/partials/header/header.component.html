@@ -1,0 +1,20 @@
+<header >
+
+  <mat-toolbar color="primary" >
+    <i class="material-icons">library_books</i>Revue Science
+
+    <div class="spacer" >
+
+      <a mat-button   *ngIf="isAdmin()"  routerLink="/home/users">utilisateurs</a>
+      <a mat-button *ngIf="isLogged" routerLink="/home/allArticles"> tout articles </a>
+      <a mat-button *ngIf="isLogged" routerLink="/home/myArticles"> Mes Articles </a>
+      <a mat-button *ngIf="isLogged" routerLink="/home/ArticlesToC"> Articles a corriger </a>
+
+    </div>
+    <a mat-raised-button color="accent" *ngIf="!isLogged" routerLink="/signin">se connecter</a>
+    <a mat-raised-button color="accent" *ngIf="isLogged" (click)="LogOut()">se déconnecter</a>
+
+  </mat-toolbar>
+
+
+</header>

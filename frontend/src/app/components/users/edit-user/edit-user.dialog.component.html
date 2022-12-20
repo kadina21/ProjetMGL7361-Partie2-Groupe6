@@ -1,0 +1,112 @@
+
+  <h3 mat-dialog-title>identifiant de l'utilisateur: {{id}}</h3>
+
+  <mat-card>
+    <mat-card-content>
+
+      <form class="example-form" [formGroup]="userEditForm">
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Firstname</mat-label>
+                  <input matInput formControlName="nom">
+                </mat-form-field>
+             </td>
+             <td>
+               <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>lastname</mat-label>
+                <input matInput  formControlName="prenom">
+               </mat-form-field>
+             </td>
+           </tr>
+          </table>
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                 <mat-label>domaine</mat-label>
+                 <input matInput  formControlName="domaine">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                 <mat-label>job</mat-label>
+                 <input matInput  formControlName="job">
+                </mat-form-field>
+              </td>
+            </tr>
+           </table>
+
+
+          <table class="example-full-width" cellspacing="0">
+           <tr>
+             <td>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="userEditForm.hasError('email') && !userEditForm.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="userEditForm.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+             </td>
+             <td>
+              <mat-form-field appearance="fill">
+                <mat-label>type user</mat-label>
+                <mat-select  formControlName="type" >
+                  <mat-option [value]="option.value" *ngFor="let option of types">{{ option.viewValue }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+             </td>
+           </tr>
+          </table>
+
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>username</mat-label>
+                  <input matInput  formControlName="username">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>password</mat-label>
+                  <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" >
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+                </mat-form-field>
+              </td>
+            </tr>
+           </table>
+
+           <div mat-dialog-actions>
+            <button mat-button  [disabled]="userEditForm.invalid" [mat-dialog-close]="1" (click)="saveEdit()">sauvgarder</button>
+            <button mat-button (click)="onNoClick()" tabindex="-1">quitter</button>
+          </div>
+        </form>
+
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
